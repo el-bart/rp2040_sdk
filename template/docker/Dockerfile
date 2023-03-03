@@ -2,6 +2,8 @@ FROM debian:11
 
 # basic tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
+  gdb \
+  gdb-multiarch \
   python3 \
   picocom \
   git \
