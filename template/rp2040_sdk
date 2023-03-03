@@ -4,8 +4,9 @@ shopt -s nullglob
 
 app=$(basename "$0")
 app_dir=$(dirname "$(readlink -e "$0")")
-vcs_root=$( { git rev-parse --show-toplevel | xargs dirname ; } 2>/dev/null || dirname "$app_dir")
-image="$(sed "s%^$vcs_root/%%" <<< "$app_dir" | tr '/.\- &' '_' | tr '[:upper:]' '[:lower:]')_rp2040_sdk"
+vcs_root=$(git rev-parse --show-toplevel 2>/dev/null || echo "$app_dir")
+vcs_root_parent=$(dirname "$vcs_root")
+image="$(sed "s%^$vcs_root_parent/%%" <<< "$app_dir" | tr '/.\- &' '_' | tr '[:upper:]' '[:lower:]')_rp2040_sdk"
 
 docker build -t "$image" "$app_dir/sdk/"
 
@@ -22,10 +23,10 @@ flags+=(-u "$(id -u):$(id -g)")
 #flags+=(--cap-add=SYS_PTRACE)
 
 # make sure to forward current directory 'as is'
-flags+=(-v "$PWD:$PWD")
+flags+=(-v "$vcs_root:$vcs_root")
 flags+=(-w "$PWD")
 # also add as a common path, so that builds can easily be made reproducible
-flags+=(-v "$PWD:/mnt")
+flags+=(-v "$vcs_root:/mnt")
 
 # forward programmer device
 picoprog=$(lsusb -d 2e8a:000c | grep 2e8a:000c | tr -d : | awk '{ print $2, $4 }' | sed -e 's#^#/dev/bus/usb #' | tr ' ' /)
