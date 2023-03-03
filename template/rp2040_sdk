@@ -7,11 +7,14 @@ app_dir=$(dirname "$(readlink -e "$0")")
 vcs_root=$( { git rev-parse --show-toplevel | xargs dirname ; } 2>/dev/null || dirname "$app_dir")
 image="$(sed "s%^$vcs_root/%%" <<< "$app_dir" | tr '/.\- &' '_' | tr '[:upper:]' '[:lower:]')_rp2040_sdk"
 
-docker build -t "$image" "$app_dir/docker/"
+docker build -t "$image" "$app_dir/sdk/"
 
 flags=()
 
-flags+=(-it)
+if tty -s > /dev/null
+then
+  flags+=(-it)
+fi
 flags+=(--rm)
 
 flags+=(-u "$(id -u):$(id -g)")
@@ -21,6 +24,8 @@ flags+=(-u "$(id -u):$(id -g)")
 # make sure to forward current directory 'as is'
 flags+=(-v "$PWD:$PWD")
 flags+=(-w "$PWD")
+# also add as a common path, so that builds can easily be made reproducible
+flags+=(-v "$PWD:/mnt")
 
 # forward programmer device
 picoprog=$(lsusb -d 2e8a:000c | grep 2e8a:000c | tr -d : | awk '{ print $2, $4 }' | sed -e 's#^#/dev/bus/usb #' | tr ' ' /)
