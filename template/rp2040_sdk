@@ -4,7 +4,7 @@ shopt -s nullglob
 
 app=$(basename "$0")
 app_dir=$(dirname "$(readlink -e "$0")")
-vcs_root=$(git rev-parse --show-toplevel 2>/dev/null || echo "$app_dir")
+vcs_root=$(cd "$app_dir" && git rev-parse --show-toplevel 2>/dev/null || echo "$app_dir")
 vcs_root_parent=$(dirname "$vcs_root")
 image="$(sed "s%^$vcs_root_parent/%%" <<< "$app_dir" | tr '/.\- &' '_' | tr '[:upper:]' '[:lower:]')_rp2040_sdk"
 
