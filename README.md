@@ -42,3 +42,10 @@ gdb-multiarch --tui pico-examples/build/blink/blink.elf
 target remote localhost:3333
 ```
 welcome to the program debugging! :)
+
+
+## programming
+
+the easiest way to start is to use one [picoboard as SWD programmer for another picoboard](https://www.raspberrypi.com/documentation/microcontrollers/raspberry-pi-pico.html#debugging-using-another-raspberry-pi-pico).
+first upload [picoprobe.uf2](https://github.com/raspberrypi/picoprobe/releases/latest/download/picoprobe.uf2) into the 'programmer' board.
+then wire both boards as in [getting started guide](https://datasheets.raspberrypi.com/pico/getting-started-with-pico.pdf), "Appendix A: Using Picoprobe" section.
