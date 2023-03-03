@@ -2,6 +2,7 @@ FROM debian:11
 
 # basic tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
+  python3 \
   picocom \
   git \
   ca-certificates \
@@ -10,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   ninja-build \
   g++
 
-# tools for building SDK
+# tools for building RP2040 Pico SDK
 RUN apt-get update && apt-get install -y --no-install-recommends \
   cmake \
   gcc-arm-none-eabi \
@@ -48,7 +49,7 @@ RUN mkdir -p "$(dirname "$OPENOCD_PATH")" && \
     make install
 COPY openocd_rp2040 /usr/local/bin/
 
-# install SDK
+# install RP2040 Pico SDK
 ENV PICO_SDK_PATH=/opt/pico/pico-sdk
 ENV PICO_SDK_VERSION=1.5.0
 RUN mkdir -p "$(dirname "$PICO_SDK_PATH")" && \
