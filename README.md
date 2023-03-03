@@ -43,6 +43,13 @@ target remote localhost:3333
 ```
 welcome to the program debugging! :)
 
+note that it is also possible to use locally installed `gdb-multiarch`:
+```
+gdb-multiarch --tui pico-examples/build/blink/blink.elf
+```
+it will work just fine, since by default:
+- all paths in SDK container and local machine are the same
+- GDB port from within SDK is exposed to host machine
 
 ## programming
 
