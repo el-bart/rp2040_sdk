@@ -20,8 +20,6 @@ flags+=(--rm)
 
 flags+=(-u "$(id -u):$(id -g)")
 
-#flags+=(--cap-add=SYS_PTRACE)
-
 # make sure to forward current directory 'as is'
 flags+=(-v "$vcs_root:$vcs_root")
 flags+=(-w "$PWD")
