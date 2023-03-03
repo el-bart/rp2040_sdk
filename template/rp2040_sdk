@@ -47,4 +47,7 @@ do
   flags+=(--group-add "$(stat -c %g "$dev")")
 done
 
+# use local network so that 'gdb' exposed ports will work
+flags+=(--network=host)
+
 exec docker run "${flags[@]}" "$image" "$@"
