@@ -1,6 +1,7 @@
 # release notes
 
 ## dev
+* when image exists, output from build is quiet (minimizes noise on the screen)
 
 ## v1.0
 * docker-based SDK

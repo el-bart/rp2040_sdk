@@ -8,8 +8,25 @@ vcs_root=$(cd "$app_dir" && git rev-parse --show-toplevel 2>/dev/null || echo "$
 vcs_root_parent=$(dirname "$vcs_root")
 image="$(sed "s%^$vcs_root_parent/%%" <<< "$app_dir" | tr '/.\- &' '_' | tr '[:upper:]' '[:lower:]')_rp2040_sdk"
 
-docker build -t "$image" "$app_dir/sdk/"
 
+#
+# BUILDING
+#
+flags=()
+if docker image ls --format="{{json .}}" | jq -r .Repository | grep --quiet "^$image$"
+then
+  # the image exists - don't be verbose when using cache (most likely)
+  flags+=(--quiet)
+fi
+flags+=(--tag "$image")
+flags+=("$app_dir/sdk/")
+
+docker build "${flags[@]}"
+
+
+#
+# RUNNING
+#
 flags=()
 
 if tty -s > /dev/null
