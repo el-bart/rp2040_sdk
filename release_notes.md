@@ -1,7 +1,8 @@
 # release notes
 
 ## dev
-
+* all helper scripts in SDK are now following `rp2040_*` naming convention
+* `rp2040_flash` helper added, to make flashing less typing
 
 ## v1.1
 * when image exists, output from build is quiet (minimizes noise on the screen)
