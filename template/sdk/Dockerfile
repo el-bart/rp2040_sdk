@@ -49,7 +49,8 @@ RUN mkdir -p "$(dirname "$OPENOCD_PATH")" && \
     ./configure --enable-ftdi --enable-sysfsgpio --enable-bcm2835gpio && \
     make -j$(nproc) && \
     make install
-COPY openocd_rp2040 /usr/local/bin/
+COPY rp2040_openocd /usr/local/bin/
+COPY rp2040_flash /usr/local/bin/
 
 # install RP2040 Pico SDK
 ENV PICO_SDK_PATH=/opt/pico/pico-sdk
