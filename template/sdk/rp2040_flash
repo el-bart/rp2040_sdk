@@ -1,0 +1,15 @@
+#!/bin/bash
+set -eu -o pipefail
+app=$(basename "$0")
+
+if [ $# -lt 1 ]
+then
+  echo "$app <path/to/program.elf> [other_openocd_options]" >&2
+  exit 2
+fi
+elf=$1
+shift 1
+
+exec rp2040_openocd \
+  -c "program $elf verify reset exit" \
+  "$@"
