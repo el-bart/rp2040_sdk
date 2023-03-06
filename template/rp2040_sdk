@@ -1,7 +1,6 @@
 #!/bin/bash
 set -eu -o pipefail
 shopt -s nullglob
-set -x
 
 app=$(basename "$0")
 app_dir=$(dirname "$(readlink -e "$0")")
