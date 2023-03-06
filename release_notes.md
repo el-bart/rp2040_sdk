@@ -1,7 +1,11 @@
 # release notes
 
 ## dev
+
+
+## v1.1
 * when image exists, output from build is quiet (minimizes noise on the screen)
+* bugfix: absence of programmer does not prevent builds
 
 ## v1.0
 * docker-based SDK
