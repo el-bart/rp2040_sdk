@@ -24,13 +24,15 @@ cd build
 cmake .. -DCMAKE_BUILD_TYPE=Debug
 cd blink
 make -j8
-# flash
-openocd_rp2040 -c 'program ./blink.elf verify reset exit'
+# flash - full command
+rp2040_openocd -c 'program ./blink.elf verify reset exit'
+# flash - shorthand
+rp2040_flash ./blink.elf
 ```
 
 in order to debug program start OpenOCD in one terminal:
 ```
-./rp2040_sdk openocd_rp2040
+./rp2040_sdk rp2040_openocd
 ```
 
 while in the second start GDB
