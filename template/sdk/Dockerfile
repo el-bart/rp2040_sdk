@@ -1,4 +1,4 @@
-FROM debian:11
+FROM debian:12
 
 # basic tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -54,7 +54,7 @@ COPY rp2040_flash /usr/local/bin/
 
 # install RP2040 Pico SDK
 ENV PICO_SDK_PATH=/opt/pico/pico-sdk
-ENV PICO_SDK_VERSION=1.5.0
+ENV PICO_SDK_VERSION=1.5.1
 RUN mkdir -p "$(dirname "$PICO_SDK_PATH")" && \
     git clone \
           -c 'advice.detachedHead=false' \
