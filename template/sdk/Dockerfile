@@ -31,13 +31,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libtool \
   libftdi-dev \
   libusb-1.0-0-dev
-# OPENOCD_VERSION must be taken from branch 'rp2040'!
-ENV OPENOCD_VERSION=8e3c38f78730ce878ff81448bc3f6c1e6bb06e13
+# OPENOCD_VERSION must be taken from branch 'rp2040...' family!
+ENV OPENOCD_VERSION=4d87f6dcae77d3cbcd8ac3f7dc887adf46ffa504
 ENV OPENOCD_PATH=/opt/pico/openocd
 RUN mkdir -p "$(dirname "$OPENOCD_PATH")" && \
     git clone \
           -c 'advice.detachedHead=false' \
-          --branch "rp2040" \
+          --branch "rp2040-v0.12.0" \
           --recursive \
           --depth 1 \
           "https://github.com/raspberrypi/openocd.git" \
