@@ -55,7 +55,7 @@ else
 fi
 
 # forwarding USB serial port (if present)
-for serial in /dev/serial/by-id/usb-Raspberry_Pi_Picoprobe_CMSIS-DAP*
+for serial in /dev/serial/by-id/usb-Raspberry_Pi_Picoprobe_*CMSIS-DAP_*
 do
   dev=$(readlink -e "$serial")
   echo "$app: found $dev serial port"
