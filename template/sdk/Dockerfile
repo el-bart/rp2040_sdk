@@ -46,11 +46,9 @@ RUN mkdir -p "$(dirname "$OPENOCD_PATH")" && \
     cd "$OPENOCD_PATH" && \
     git reset --hard "$OPENOCD_VERSION" && \
     ./bootstrap && \
-    ./configure --enable-ftdi --enable-sysfsgpio --enable-bcm2835gpio && \
+    ./configure --enable-ftdi --enable-sysfsgpio --enable-bcm2835gpio --enable-picoprobe && \
     make -j$(nproc) && \
     make install
-COPY rp2040_openocd /usr/local/bin/
-COPY rp2040_flash /usr/local/bin/
 
 # install RP2040 Pico SDK
 ENV PICO_SDK_PATH=/opt/pico/pico-sdk
@@ -65,3 +63,6 @@ RUN mkdir -p "$(dirname "$PICO_SDK_PATH")" && \
           && \
     cd "$PICO_SDK_PATH" && \
     git submodule update --init
+
+COPY rp2040_openocd /usr/local/bin/
+COPY rp2040_flash /usr/local/bin/
