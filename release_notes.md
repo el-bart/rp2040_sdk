@@ -1,6 +1,7 @@
 # release notes
 
 ## dev
+* added `example/` dir with end-to-end build flow example
 * all helper scripts in SDK are now following `rp2040_*` naming convention
 * `rp2040_flash` helper added, to make flashing less typing
 

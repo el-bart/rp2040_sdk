@@ -1,0 +1,15 @@
+#!/bin/bash
+set -eux -o pipefail
+
+app=$(basename "$0")
+app_dir=$(readlink -e "$(dirname "$0")")
+
+cd "$(mktemp -d)"
+"$app_dir/../export_template" .
+cp -v "$app_dir"/{CMakeLists.txt,hello_world.cpp,compile} .
+mkdir build
+
+time ./rp2040_sdk ./compile
+set +x
+echo "$app: test app is in $PWD/build/hello_world.elf"
+echo "$app: all good"

@@ -1,0 +1,6 @@
+#!/bin/bash
+set -eux -o pipefail
+cd build
+time cmake -G Ninja ..
+time ninja
+time rp2040_flash hello_world.elf
