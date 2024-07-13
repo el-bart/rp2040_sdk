@@ -36,10 +36,7 @@ ENV OPENOCD_VERSION=4d87f6dcae77d3cbcd8ac3f7dc887adf46ffa504
 ENV OPENOCD_PATH=/opt/pico/openocd
 RUN mkdir -p "$(dirname "$OPENOCD_PATH")" && \
     git clone \
-          -c 'advice.detachedHead=false' \
           --branch "rp2040-v0.12.0" \
-          --recursive \
-          --depth 1 \
           "https://github.com/raspberrypi/openocd.git" \
           "$OPENOCD_PATH" \
           && \
