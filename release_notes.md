@@ -1,8 +1,13 @@
 # release notes
 
 ## dev
+
+## v1.3
+* fixed OpenOCD building, after commit change
 * added `example/` dir with end-to-end build flow example
 * all helper scripts in SDK are now following `rp2040_*` naming convention
+
+## v1.2
 * `rp2040_flash` helper added, to make flashing less typing
 
 ## v1.1
