@@ -54,7 +54,6 @@ RUN mkdir -p "$(dirname "$PICO_SDK_PATH")" && \
     git clone \
           -c 'advice.detachedHead=false' \
           --branch "$PICO_SDK_VERSION" \
-          --depth 1 \
           "https://github.com/raspberrypi/pico-sdk.git" \
           "$PICO_SDK_PATH" \
           && \
