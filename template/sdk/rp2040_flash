@@ -10,6 +10,7 @@ fi
 elf=$1
 shift 1
 
+rp2040_disable_watchdog
 exec rp2040_openocd \
   -c "program $elf verify reset exit" \
   "$@"
