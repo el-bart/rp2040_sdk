@@ -1,0 +1,8 @@
+#!/bin/bash
+set -eu -o pipefail
+app=$(basename "$0")
+
+exec rp2040_openocd \
+  -c "init" \
+  -c "rp2040.core0 mww 0x40058000 0 ; exit"
+  "$@"
