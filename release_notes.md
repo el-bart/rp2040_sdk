@@ -1,6 +1,7 @@
 # release notes
 
 ## dev
+* `rp2040_openocd` can now auto-detect RasPi to use its native SWD interface
 * added `rp2040_load` that can disable watchdog and a load given elf file to RAM (useful for unblocking programs that are stuck on watchdog reset loop!)
 * added `rp2040_disable_watchdog` helper
 

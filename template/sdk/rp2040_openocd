@@ -1,6 +1,17 @@
 #!/bin/bash
-exec openocd \
-  -f interface/cmsis-dap.cfg \
-  -f target/rp2040.cfg \
-  -c "adapter speed 20000" \
-  "$@"
+set -eu -o pipefail
+
+flags=()
+
+# auto-detect platform
+if [ -e /usr/bin/raspinfo ]
+then
+  flags+=(-f interface/raspberrypi-swd.cfg)
+else
+  flags+=(-f interface/cmsis-dap.cfg)
+fi
+
+flags+=(-f target/rp2040.cfg)
+flags+=(-c "adapter speed 20000")
+
+exec openocd "${flags[@]}" "$@"
