@@ -1,6 +1,7 @@
 # release notes
 
 ## dev
+* added `rp2040_load` that can disable watchdog and a load given elf file to RAM (useful for unblocking programs that are stuck on watchdog reset loop!)
 
 ## v1.3
 * fixed OpenOCD building, after commit change

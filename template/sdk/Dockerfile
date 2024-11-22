@@ -60,5 +60,4 @@ RUN mkdir -p "$(dirname "$PICO_SDK_PATH")" && \
     cd "$PICO_SDK_PATH" && \
     git submodule update --init
 
-COPY rp2040_openocd /usr/local/bin/
-COPY rp2040_flash /usr/local/bin/
+COPY rp2040_* /usr/local/bin/

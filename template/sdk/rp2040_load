@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# helper appl that can load a program to RAM and start it.
+# this is SUPER useful if existing sytem is in a reboot-loop because
+# of a watchdog (stopping process via gdb also stops the watchdog).
+#
+set -eu -o pipefail
+app=$(basename "$0")
+
+if [ $# -ne 1 ]
+then
+  echo "$app </path/to/file.elf>" >&2
+  exit 2
+fi
+elf=$1
+shift 1
+
+# run OpenOCD in a background
+rp2040_openocd &
+trap "kill $!" EXIT
+while ! nc -z localhost 3333
+do
+  sleep 0.5
+done
+
+# NOT 0x40058000 is 32-bit localtion where watchdog-enable flag lives it need to be disabled!
+gdb <<EOF
+target remote localhost:3333
+p (*(unsigned*)0x40058000)=0
+load "$elf"
+continue &
+EOF
