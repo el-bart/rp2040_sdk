@@ -23,7 +23,7 @@ do
   sleep 0.5
 done
 
-# NOT 0x40058000 is 32-bit localtion where watchdog-enable flag lives it need to be disabled!
+# 0x40058000 is 32-bit localtion where watchdog-enable flag lives - it needs to be disabled!
 gdb <<EOF
 target remote localhost:3333
 p (*(unsigned*)0x40058000)=0
