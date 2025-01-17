@@ -60,4 +60,9 @@ RUN mkdir -p "$(dirname "$PICO_SDK_PATH")" && \
     cd "$PICO_SDK_PATH" && \
     git submodule update --init
 
+# misc convenience tools
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  tree \
+  vim
+
 COPY rp2040_* /usr/local/bin/
