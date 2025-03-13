@@ -13,8 +13,8 @@ set(PICO_BOARD pico_w CACHE STRING "Board type")
 
 include("${PICO_SDK_PATH}/external/pico_sdk_import.cmake")
 
-if (PICO_SDK_VERSION_STRING VERSION_LESS "1.5.1")
-  message(FATAL_ERROR "Raspberry Pi Pico SDK version 1.5.1 (or later) required. Your version is ${PICO_SDK_VERSION_STRING}")
+if (PICO_SDK_VERSION_STRING VERSION_LESS "2.1.1")
+  message(FATAL_ERROR "Raspberry Pi Pico SDK version 2.1.1 (or later) required. Your version is ${PICO_SDK_VERSION_STRING}")
 endif()
 
 project(hello-pico C CXX ASM)

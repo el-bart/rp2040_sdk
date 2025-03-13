@@ -49,7 +49,7 @@ RUN mkdir -p "$(dirname "$OPENOCD_PATH")" && \
 
 # install RP2040 Pico SDK
 ENV PICO_SDK_PATH=/opt/pico/pico-sdk
-ENV PICO_SDK_VERSION=1.5.1
+ENV PICO_SDK_VERSION=2.1.1
 RUN mkdir -p "$(dirname "$PICO_SDK_PATH")" && \
     git clone \
           -c 'advice.detachedHead=false' \
@@ -59,6 +59,22 @@ RUN mkdir -p "$(dirname "$PICO_SDK_PATH")" && \
           && \
     cd "$PICO_SDK_PATH" && \
     git submodule update --init
+
+# install picotool (required since SDK 2.0.0)
+ENV PICOTOOL_PATH=/opt/pico/picotool
+ENV PICOTOOL_VERSION=2.1.1
+RUN mkdir -p "$(dirname "$PICOTOOL_PATH")" && \
+    git clone \
+          -c 'advice.detachedHead=false' \
+          --branch "$PICOTOOL_VERSION" \
+          "https://github.com/raspberrypi/picotool.git" \
+          "$PICOTOOL_PATH"
+RUN cd "$PICOTOOL_PATH" && \
+    mkdir build && \
+    cd build && \
+    cmake -G Ninja ../ && \
+    ninja && \
+    ninja install
 
 # misc convenience tools
 RUN apt-get update && apt-get install -y --no-install-recommends \

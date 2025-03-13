@@ -1,6 +1,8 @@
 # release notes
 
-## dev
+## v2.0
+* SDK updated to 2.1.1
+* added `picotool` to the image
 * `rp2040_openocd` can now auto-detect RasPi to use its native SWD interface
 * added `rp2040_load` that can disable watchdog and a load given elf file to RAM (useful for unblocking programs that are stuck on watchdog reset loop!)
 * added `rp2040_disable_watchdog` helper
