@@ -76,6 +76,10 @@ RUN cd "$PICOTOOL_PATH" && \
     ninja && \
     ninja install
 
+# needed for calculating GATT files for BTLE
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  python3-pycryptodom
+
 # misc convenience tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
   tree \

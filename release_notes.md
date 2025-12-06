@@ -1,5 +1,8 @@
 # release notes
 
+## dev
+* added python lib for calculating GATT files for BTLE profiles
+
 ## v2.0
 * SDK updated to 2.1.1
 * added `picotool` to the image
