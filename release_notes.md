@@ -2,6 +2,7 @@
 
 ## dev
 * added python lib for calculating GATT files for BTLE profiles
+* added `RP2040_SDK_VERBOSE_BUILD` to force ferbose output from building docker image
 
 ## v2.0
 * SDK updated to 2.1.1

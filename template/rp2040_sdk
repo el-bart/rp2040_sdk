@@ -13,7 +13,7 @@ image="$(sed "s%^$vcs_root_parent/%%" <<< "$app_dir" | tr '/.\- &' '_' | tr '[:u
 # BUILDING
 #
 flags=()
-if docker image ls --format="{{json .}}" | jq -r .Repository | grep --quiet "^$image$"
+if [ "${RP2040_SDK_VERBOSE_BUILD:-}" = "" ] && docker image ls --format="{{json .}}" | jq -r .Repository | grep --quiet "^$image$"
 then
   # the image exists - don't be verbose when using cache (most likely)
   flags+=(--quiet)
